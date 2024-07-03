@@ -13,6 +13,11 @@ body {
     text-align: center;
 }
 
+.logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
 .question-container {
     margin-bottom: 20px;
 }
@@ -35,3 +40,9 @@ body {
     margin-top: 20px;
     font-size: 1.2em;
 }
+
+.score-container {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
