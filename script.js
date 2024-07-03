@@ -59,6 +59,7 @@ function showQuestion() {
 function resetState() {
     feedbackElement.textContent = '';
     nextButton.style.display = 'none';
+    restartButton.style.display = 'none';
     answerButtonsElement.innerHTML = '';
 }
 
@@ -99,3 +100,4 @@ nextButton.addEventListener('click', showNextQuestion);
 restartButton.addEventListener('click', restartGame);
 
 showQuestion();
+
