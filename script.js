@@ -2,9 +2,10 @@ const questionElement = document.getElementById('question');
 const answerButtonsElement = document.querySelector('.answer-buttons');
 const feedbackElement = document.getElementById('feedback');
 const nextButton = document.getElementById('next-button');
-const correctScoreElement = document.getElementById('correct-score');
+const correctScoreElement = document.get
 const wrongScoreElement = document.getElementById('wrong-score');
 const restartButton = document.getElementById('restart-button');
+const endContainer = document.getElementById('end-container');
 
 const questions = [
     {
@@ -213,6 +214,7 @@ function resetState() {
     feedbackElement.textContent = '';
     nextButton.style.display = 'none';
     restartButton.style.display = 'none';
+    endContainer.style.display = 'none';
     answerButtonsElement.innerHTML = '';
 }
 
@@ -229,14 +231,19 @@ function selectAnswer(e) {
     if (currentQuestionIndex < questions.length - 1) {
         nextButton.style.display = 'block';
     } else {
-        restartButton.style.display = 'block';
-        feedbackElement.textContent += ' You have completed the quiz!';
+        endGame();
     }
 }
 
 function showNextQuestion() {
     currentQuestionIndex++;
     showQuestion();
+}
+
+function endGame() {
+    restartButton.style.display = 'block';
+    endContainer.style.display = 'block';
+    feedbackElement.textContent += ' You have completed the quiz!';
 }
 
 function restartGame() {
@@ -246,6 +253,7 @@ function restartGame() {
     correctScoreElement.textContent = correctAnswers;
     wrongScoreElement.textContent = wrongAnswers;
     restartButton.style.display = 'none';
+    endContainer.style.display = 'none';
     showQuestion();
 }
 
@@ -253,4 +261,5 @@ nextButton.addEventListener('click', showNextQuestion);
 restartButton.addEventListener('click', restartGame);
 
 showQuestion();
+
 
