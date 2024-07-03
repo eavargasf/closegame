@@ -45,3 +45,20 @@ body {
     margin-top: 20px;
     font-size: 1.2em;
 }
+
+.end-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.touchdown-image {
+    width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.touchdown-text {
+    font-size: 2em;
+    font-weight: bold;
+    color: yellow;
+}
