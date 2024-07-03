@@ -14,6 +14,7 @@ const question = {
 
 function showQuestion() {
     questionElement.textContent = question.text;
+    answerButtonsElement.innerHTML = ''; // Clear any existing buttons
     question.answers.forEach(answer => {
         const button = document.createElement('button');
         button.textContent = answer.text;
