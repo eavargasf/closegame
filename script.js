@@ -2,6 +2,9 @@ const questionElement = document.getElementById('question');
 const answerButtonsElement = document.querySelector('.answer-buttons');
 const feedbackElement = document.getElementById('feedback');
 const nextButton = document.getElementById('next-button');
+const correctScoreElement = document.getElementById('correct-score');
+const wrongScoreElement = document.getElementById('wrong-score');
+const restartButton = document.getElementById('restart-button');
 
 const questions = [
     {
@@ -34,6 +37,8 @@ const questions = [
 ];
 
 let currentQuestionIndex = 0;
+let correctAnswers = 0;
+let wrongAnswers = 0;
 
 function showQuestion() {
     resetState();
@@ -61,22 +66,36 @@ function selectAnswer(e) {
     const selectedButton = e.target;
     const correct = selectedButton.dataset.correct === 'true';
     feedbackElement.textContent = correct ? 'Correct!' : 'Wrong!';
+    correct ? correctAnswers++ : wrongAnswers++;
+    correctScoreElement.textContent = correctAnswers;
+    wrongScoreElement.textContent = wrongAnswers;
     Array.from(answerButtonsElement.children).forEach(button => {
         button.disabled = true;
     });
-    nextButton.style.display = 'block';
+    if (currentQuestionIndex < questions.length - 1) {
+        nextButton.style.display = 'block';
+    } else {
+        restartButton.style.display = 'block';
+        feedbackElement.textContent += ' You have completed the quiz!';
+    }
 }
 
 function showNextQuestion() {
     currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        showQuestion();
-    } else {
-        feedbackElement.textContent = 'You have completed the quiz!';
-        nextButton.style.display = 'none';
-    }
+    showQuestion();
+}
+
+function restartGame() {
+    currentQuestionIndex = 0;
+    correctAnswers = 0;
+    wrongAnswers = 0;
+    correctScoreElement.textContent = correctAnswers;
+    wrongScoreElement.textContent = wrongAnswers;
+    restartButton.style.display = 'none';
+    showQuestion();
 }
 
 nextButton.addEventListener('click', showNextQuestion);
+restartButton.addEventListener('click', restartGame);
 
 showQuestion();
